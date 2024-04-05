@@ -12,7 +12,7 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
       E validando minha compra ao final */
 
   beforeEach(() => {
-      cy.intercept('POST', '**/?wc-ajax=get_refreshed_fragments').as('getCarrinho')
+      cy.intercept('POST', '**/?wc-ajax=checkout').as('getCarrinho')
       cy.visit('minha-conta')
   });
 
@@ -78,6 +78,7 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
         cy.wait('@getCarrinho')
 
         cy.get('.page-title').should('contain', 'Pedido recebido')
+        cy.screenshot()
 
         });
 
